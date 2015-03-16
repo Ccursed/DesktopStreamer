@@ -95,7 +95,7 @@ namespace DesktopStreamer
 
         #region Event handling
 
-        void MainEle_WatchClickEvent(object sender, RoutedEventArgs e, string link)
+        private void MainEle_WatchClickEvent(object sender, RoutedEventArgs e, string link)
         {
             LivestreamerWrapper lsWrapper = LivestreamerWrapper.CreateInstance();
             lsWrapper.SetArguments(LivestreamerWrapper.CreateStartParameter(link, LivestreamerWrapper.Quality.Best, fileMgr.PlayerPath, null));
@@ -105,7 +105,7 @@ namespace DesktopStreamer
             lsWrapper.log.onAdd += log_onAdd;
         }
 
-        void lsw_instanceFinished(LivestreamerWrapper instance)
+        private void lsw_instanceFinished(LivestreamerWrapper instance)
         {
             MessageBox.Show(instance.name);
         }
@@ -184,9 +184,14 @@ namespace DesktopStreamer
             RemoveFavorite(fav);
         }
 
-        void favList_onSelectionChanged(Favorite fav)
+        private void favList_onSelectionChanged(Favorite fav)
         {
             mainEle.srcLink = fav.Url;
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         private Assembly LoadLocalAssemblys(object sender, ResolveEventArgs args)
@@ -211,6 +216,6 @@ namespace DesktopStreamer
                 throw;
             }
         }
-        #endregion
+        #endregion   
     }
 }

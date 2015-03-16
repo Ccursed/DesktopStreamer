@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="400" MinHeight="150" MinWidth="200">
+    <Border BorderBrush="AliceBlue" BorderThickness="2" CornerRadius="8">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
@@ -21,7 +22,7 @@
                             <Image Source="{Binding Path=Logo}"/>
                         </Viewbox>
                         <Viewbox Margin="6,0,0,0" DockPanel.Dock="Right" VerticalAlignment="Stretch">
-                            <Image Source="{Binding Path=StatusImage}"/>
+                            <Image Source="{Binding Path=StatusImage}" VerticalAlignment="Stretch"/>
                         </Viewbox>
                         <TextBlock DockPanel.Dock="Top" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Title}"/>
                         <TextBlock DockPanel.Dock="Bottom" TextWrapping="NoWrap" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Description}" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type DockPanel}}}"/>
@@ -42,4 +43,5 @@
             <Button Content="Remove" Name="btnRemove" Grid.Row="3" Margin="3" Click="btnRemoveClick"/>
         </Grid>
     </Grid>
+    </Border>
 </UserControl>
