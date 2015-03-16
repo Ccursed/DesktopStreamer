@@ -11,7 +11,7 @@
             <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="70"/>
         </Grid.ColumnDefinitions>
-        <ListBox Name="favList" Grid.Column="0" Grid.RowSpan="6" Margin="3" HorizontalContentAlignment="Stretch" PreviewDrop="favList_PreviewDrop" AllowDrop="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False" SelectionChanged="favList_SelectionChanged">
+        <ListBox Name="favList" Grid.Column="0" Grid.RowSpan="6" Margin="3" HorizontalContentAlignment="Stretch" PreviewDrop="favList_PreviewDrop" AllowDrop="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False" SelectionChanged="favList_SelectionChanged" BorderBrush="{x:Null}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel MaxHeight="50" Margin="4">
