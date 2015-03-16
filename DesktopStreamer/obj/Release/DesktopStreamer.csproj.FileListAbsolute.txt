@@ -1,0 +1,11 @@
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\bin\Release\DesktopStreamer.exe.config
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Release\FavoriteList.baml
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Release\MainElement.baml
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Release\App.baml
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Release\FavoriteList.g.cs
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Release\MainElement.g.cs
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Release\MainWindow.g.cs
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Release\App.g.cs
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Release\DesktopStreamer_MarkupCompile.cache
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Release\DesktopStreamer_MarkupCompile.lref

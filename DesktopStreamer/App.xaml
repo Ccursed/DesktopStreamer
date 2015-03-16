@@ -1,0 +1,11 @@
+﻿<Application x:Class="DesktopStreamer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <BitmapImage x:Key="offlineImg" UriSource="Resources/statusOffline.png" />
+        <BitmapImage x:Key="onlineImg" UriSource="Resources/statusOnline.png" />
+        <BitmapImage x:Key="pendingImg" UriSource="Resources/statusPending.png" />
+        <BitmapImage x:Key="logoDummyImg" UriSource="Resources/logoDummy.png" />
+    </Application.Resources>
+</Application>
