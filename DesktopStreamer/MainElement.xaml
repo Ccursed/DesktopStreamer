@@ -11,7 +11,7 @@
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="70"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" Text="Link" TextAlignment="Center" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Column="0" Text="Link" TextAlignment="Center" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <TextBox Name="txtLink" Grid.Column="1" TextWrapping="NoWrap" VerticalAlignment="Center" FontSize="14" BorderThickness="1" Padding="4" Margin="4" PreviewDrop="txtLink_PreviewDrop" KeyUp="txtLink_KeyUp"/>
         <Button Grid.Column="2" Content="Watch" Margin="4" Click="btnWatchClick" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"/>
     </Grid>

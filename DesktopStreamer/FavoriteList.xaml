@@ -5,31 +5,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="400" MinHeight="150" MinWidth="200">
-    <Border BorderBrush="AliceBlue" BorderThickness="2" CornerRadius="8">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="70"/>
         </Grid.ColumnDefinitions>
-        <ListBox Name="favList" Grid.Column="0" Grid.RowSpan="6" Margin="3" HorizontalContentAlignment="Stretch" PreviewDrop="favList_PreviewDrop" AllowDrop="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False" SelectionChanged="favList_SelectionChanged" BorderBrush="{x:Null}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <DockPanel MaxHeight="50" Margin="4">
-                        <DockPanel.ToolTip>
-                            <ToolTip Content="{Binding Path=Description}" Placement="Center"/>
-                        </DockPanel.ToolTip>
-                        <Viewbox DockPanel.Dock="Left" Margin="0,0,6,0">
-                            <Image Source="{Binding Path=Logo}"/>
-                        </Viewbox>
-                        <Viewbox Margin="6,0,0,0" DockPanel.Dock="Right" VerticalAlignment="Stretch">
-                            <Image Source="{Binding Path=StatusImage}" VerticalAlignment="Stretch"/>
-                        </Viewbox>
-                        <TextBlock DockPanel.Dock="Top" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Title}"/>
-                        <TextBlock DockPanel.Dock="Bottom" TextWrapping="NoWrap" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Description}" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type DockPanel}}}"/>
-                    </DockPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Border BorderBrush="Silver" BorderThickness="2,2,1,1" CornerRadius="3">
+            <ListBox Name="favList" Grid.Column="0" Grid.RowSpan="6" HorizontalContentAlignment="Stretch" PreviewDrop="favList_PreviewDrop" AllowDrop="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False" SelectionChanged="favList_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel MaxHeight="50" Margin="4">
+                            <DockPanel.ToolTip>
+                                <ToolTip Content="{Binding Path=Description}" Placement="Center"/>
+                            </DockPanel.ToolTip>
+                            <Viewbox DockPanel.Dock="Left" Margin="0,0,6,0">
+                                <Image Source="{Binding Path=Logo}"/>
+                            </Viewbox>
+                            <Viewbox Margin="6,0,0,0" DockPanel.Dock="Right" VerticalAlignment="Stretch">
+                                <Image Source="{Binding Path=StatusImage}" VerticalAlignment="Stretch"/>
+                            </Viewbox>
+                            <TextBlock DockPanel.Dock="Top" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Title}"/>
+                            <TextBlock DockPanel.Dock="Bottom" TextWrapping="NoWrap" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Description}" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type DockPanel}}}"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
         <Grid  Grid.Column="1" Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
@@ -43,5 +44,4 @@
             <Button Content="Remove" Name="btnRemove" Grid.Row="3" Margin="3" Click="btnRemoveClick"/>
         </Grid>
     </Grid>
-    </Border>
 </UserControl>

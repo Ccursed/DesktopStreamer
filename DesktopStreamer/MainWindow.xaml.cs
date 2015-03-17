@@ -189,9 +189,24 @@ namespace DesktopStreamer
             mainEle.srcLink = fav.Url;
         }
 
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnTray_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
         }
 
         private Assembly LoadLocalAssemblys(object sender, ResolveEventArgs args)
@@ -216,11 +231,6 @@ namespace DesktopStreamer
                 throw;
             }
         }
-        #endregion   
-
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
+        #endregion
     }
 }
