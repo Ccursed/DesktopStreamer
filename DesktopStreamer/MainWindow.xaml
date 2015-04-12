@@ -55,7 +55,7 @@
                 <local:MainElement x:Name="mainEle" Grid.Column="1" Grid.ColumnSpan="2" Margin="3"/>
                 <DockPanel Grid.Column="0" Grid.Row="1" Margin="6,4,0,4" LastChildFill="False">
                     <Button Name="btnExit" Content="Exit" DockPanel.Dock="Bottom" Margin="2" Click="btnExit_Click"/>
-                    <Button Name="btnSettings" Content="Settings" DockPanel.Dock="Bottom" Margin="2"/>
+                    <Button Name="btnSettings" Content="Settings" DockPanel.Dock="Bottom" Margin="2" Click="btnSettings_Click"/>
                 </DockPanel>
             </Grid>
         </DockPanel>

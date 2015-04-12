@@ -18,7 +18,7 @@
                             <DockPanel.ToolTip>
                                 <ToolTip Content="{Binding Path=Description}" Placement="Center"/>
                             </DockPanel.ToolTip>
-                            <Viewbox DockPanel.Dock="Left" Margin="0,0,6,0">
+                            <Viewbox DockPanel.Dock="Left" Width="40" Margin="0,0,6,0">
                                 <Image Source="{Binding Path=Logo}"/>
                             </Viewbox>
                             <Viewbox Margin="6,0,0,0" DockPanel.Dock="Right" VerticalAlignment="Stretch">

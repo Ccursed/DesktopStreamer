@@ -10,11 +10,16 @@ using System.Windows.Media.Imaging;
 
 namespace DesktopStreamer
 {
+    public delegate void DescriptionChangedHandler(string description);
+
     [Serializable]
     public class Favorite : INotifyPropertyChanged
     {
         [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
+
+        [field: NonSerialized]
+        public event DescriptionChangedHandler onDescriptionChanged;
 
         public enum Status
         {
@@ -22,6 +27,13 @@ namespace DesktopStreamer
         };
 
         #region Properties
+
+        private long id;
+        public long Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
         private bool isDeleted;
         public bool IsDeleted
@@ -42,6 +54,21 @@ namespace DesktopStreamer
         {
             get { return listPosition; }
             set { listPosition = value; }
+        }
+
+        private string title;
+        public string Title
+        {
+            get { return title; }
+            set { title = value; if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("title")); }
+        }
+
+        [NonSerialized]
+        private bool connected;
+        public bool Connected
+        {
+            get { return connected; }
+            set { connected = value; }
         }
 
         [NonSerialized]
@@ -77,19 +104,11 @@ namespace DesktopStreamer
         }
 
         [NonSerialized]
-        private string title;
-        public string Title 
-        {
-            get { return title; }
-            set { title = value; if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("title")); }
-        }
-
-        [NonSerialized]
         private string description;
         public string Description 
         {
             get { return description; }
-            set { description = value; if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("description")); } 
+            set { description = value; if(onDescriptionChanged != null) onDescriptionChanged(description); } 
         }
 
         [NonSerialized]
@@ -110,7 +129,7 @@ namespace DesktopStreamer
                 case Status.PENDING: StatusImage = new BitmapImage(new Uri(@"Resources/statusPending.png", UriKind.Relative)); break;
                 case Status.ONLINE: StatusImage = new BitmapImage(new Uri(@"Resources/statusOnline.png", UriKind.Relative)); break;
                 case Status.OFFLINE: StatusImage = new BitmapImage(new Uri(@"Resources/statusOffline.png", UriKind.Relative)); break;
-                case Status.DOWNLOADING: StatusImage = new BitmapImage(new Uri(@"Resources/statusPending.png", UriKind.Relative)); break;
+                case Status.DOWNLOADING: StatusImage = new BitmapImage(new Uri(@"Resources/statusDownload.png", UriKind.Relative)); break;
                 default: StatusImage = new BitmapImage(new Uri(@"Resources/statusOffline.png", UriKind.Relative)); break;
             }
         }

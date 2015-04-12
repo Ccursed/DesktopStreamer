@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using StreamHostApi;
+using System.ComponentModel;
+using System.Timers;
+using System.Collections.ObjectModel;
 
 namespace DesktopStreamer
 {
@@ -27,6 +30,7 @@ namespace DesktopStreamer
         private FileMgr fileMgr;
         private FavoriteMgr favMgr;
         private List<LivestreamerWrapper> lsInstances;
+        private SettingsManager settingsMgr;
         private bool expanded = true;
         private double expandHeight;
         private double collapseHeight = 83;
@@ -41,14 +45,17 @@ namespace DesktopStreamer
             expandHeight = Height;
             Inits();
             RegisterEvents();
+
             fileMgr.ValidateFileStructure();
             LoadSerializedFavorites();
+            settingsMgr.ScanForPlayers();
         }
 
         private void Inits()
         {
             fileMgr = new FileMgr();
-            favMgr = new FavoriteMgr(favList, fileMgr.FavoriteDirectory, fileMgr.FavoriteLogoDirectory);
+            favMgr = new FavoriteMgr(favList, fileMgr.FavoriteDirectory, fileMgr.FavoriteLogoDirectory, Dispatcher);
+            settingsMgr = new SettingsManager();
             LivestreamerWrapper.Init(fileMgr.LivestreamerDirectory);
             lsInstances = new List<LivestreamerWrapper>();
         }
@@ -57,7 +64,7 @@ namespace DesktopStreamer
         {
             this.Closing += MainWindow_Closing;
             AppDomain.CurrentDomain.AssemblyResolve += LoadLocalAssemblys;
-            mainEle.onButtonWatch += MainEle_WatchClickEvent;
+            mainEle.onButtonWatchClicked += MainEle_WatchClickEvent;
             favList.onFavDrop += favList_onFavDrop;
             favList.onAddClick += favList_AddClick;
             favList.onRemoveClick += favList_RemoveClick;
@@ -70,7 +77,14 @@ namespace DesktopStreamer
 
             await Task.Run(() => (favorites = fileMgr.DeserializeFavorites()));
 
-            favMgr.InsertDeserializedFavorites(favorites);
+            List<Favorite> favorites2 = new List<Favorite>();
+
+            foreach(Favorite fav in favorites)
+            {
+                favorites2.Add(favMgr.CreateFavorite(fav.Url));
+            }
+
+            favList.InitFavorites(favorites2);
         }
         #endregion
 
@@ -82,9 +96,9 @@ namespace DesktopStreamer
                 fileMgr.SerializeFavorite(fav);
                 favList.AddNewFavorite(fav);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Favorite could not be added!");
+                throw new Exception(string.Format(ex.Message));
             }
         }
 
@@ -95,44 +109,30 @@ namespace DesktopStreamer
 
         #region Event handling
 
-        private void MainEle_WatchClickEvent(object sender, RoutedEventArgs e, string link)
+        #region UI
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            LivestreamerWrapper lsWrapper = LivestreamerWrapper.CreateInstance();
-            lsWrapper.SetArguments(LivestreamerWrapper.CreateStartParameter(link, LivestreamerWrapper.Quality.Best, fileMgr.PlayerPath, null));
-            MessageBox.Show(lsWrapper.lsInstance.StartInfo.Arguments);
-            lsWrapper.instanceChangedState += onInstanceChangedState;
-            lsWrapper.Start();
-            lsWrapper.log.onAdd += log_onAdd;
+            this.Close();
         }
 
-        private void lsw_instanceFinished(LivestreamerWrapper instance)
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(instance.name);
+            WindowState = WindowState.Minimized;
         }
 
-        private void onInstanceChangedState(LivestreamerWrapper instance, LivestreamerWrapper.Status old, LivestreamerWrapper.Status now)
+        private void btnTray_Click(object sender, RoutedEventArgs e)
         {
-            switch (now)
-            {
-                case LivestreamerWrapper.Status.Idle: break;
-                case LivestreamerWrapper.Status.Starting: break;
-                case LivestreamerWrapper.Status.Working: break;
-                case LivestreamerWrapper.Status.Error: break;
-                case LivestreamerWrapper.Status.Finished: instance.Close(); break;
-                default: break;
-            }
-
-            MessageBox.Show(now.ToString());
+            Hide();
         }
 
-        private void log_onAdd(string line)
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(line);
-        }
-
-        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            foreach (LivestreamerWrapper instance in lsInstances) instance.Close();
+            SettingsWindow wndSettings = new SettingsWindow(null); //ToDo
+            wndSettings.Owner = this;
+            wndSettings.Owner.IsEnabled = false;
+            wndSettings.SetPlayerList(settingsMgr.dctMediaPlayer.Values);
+            wndSettings.Show();
         }
 
         private void btnExpand_Click(object sender, RoutedEventArgs e)
@@ -157,6 +157,14 @@ namespace DesktopStreamer
             justExpanded = true;
         }
 
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+        #endregion
+
+        #region MainWindow
+
         private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (justExpanded)
@@ -165,9 +173,17 @@ namespace DesktopStreamer
                 return;
             }
 
-            if(expanded) expandHeight = e.NewSize.Height;
+            if (expanded) expandHeight = e.NewSize.Height;
             else collapseHeight = e.NewSize.Height;
         }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            foreach (LivestreamerWrapper instance in lsInstances) instance.Close();
+        } 
+        #endregion
+
+        #region FavoriteList
 
         private void favList_onFavDrop(string link)
         {
@@ -176,7 +192,7 @@ namespace DesktopStreamer
 
         private void favList_AddClick()
         {
-            AddFavorite(mainEle.srcLink);
+            AddFavorite(mainEle.SrcLink);
         }
 
         private void favList_RemoveClick(Favorite fav)
@@ -186,27 +202,51 @@ namespace DesktopStreamer
 
         private void favList_onSelectionChanged(Favorite fav)
         {
-            mainEle.srcLink = fav.Url;
+            mainEle.SrcLink = fav.Url;
+        }
+        #endregion
+
+        #region LivestreamerWrapper
+
+        private void lsw_instanceFinished(LivestreamerWrapper instance)
+        {
+
         }
 
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void onInstanceChangedState(LivestreamerWrapper instance, LivestreamerWrapper.Status old, LivestreamerWrapper.Status now)
         {
-            this.DragMove();
+            switch (now)
+            {
+                case LivestreamerWrapper.Status.Idle: break;
+                case LivestreamerWrapper.Status.Starting: break;
+                case LivestreamerWrapper.Status.Working: break;
+                case LivestreamerWrapper.Status.Error: break;
+                case LivestreamerWrapper.Status.Finished: instance.Close(); break;
+                default: break;
+            }
         }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
+        private void log_onAdd(string line)
         {
-            this.Close();
+            Console.WriteLine(line);
+        }
+        #endregion
+
+        private void tmrUpdate_Tick(object sender, ElapsedEventArgs e)
+        {
+            if (favList.favorites.Count <= 0) return;
+            Favorite fav = favList.favorites[favList.UpdateIndex++];
+
+            //Task.Run(() => favMgr.UpdateFavorite(fav));
         }
 
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        private void MainEle_WatchClickEvent(object sender, RoutedEventArgs e, string link)
         {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void btnTray_Click(object sender, RoutedEventArgs e)
-        {
-            Hide();
+            LivestreamerWrapper lsWrapper = LivestreamerWrapper.CreateInstance();
+            lsWrapper.SetArguments(LivestreamerWrapper.CreateStartParameter(link, LivestreamerWrapper.Quality.Best, fileMgr.PlayerPath, null));
+            lsWrapper.instanceChangedState += onInstanceChangedState;
+            lsWrapper.Start();
+            lsWrapper.log.onAdd += log_onAdd;
         }
 
         private Assembly LoadLocalAssemblys(object sender, ResolveEventArgs args)
@@ -231,6 +271,6 @@ namespace DesktopStreamer
                 throw;
             }
         }
-        #endregion
+        #endregion 
     }
 }

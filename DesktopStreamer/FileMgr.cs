@@ -210,7 +210,7 @@ namespace DesktopStreamer
         {
             try
             {
-                string path = FavoriteDirectory + @"\" + fav.SrcChannel.Id + @".fav";
+                string path = FavoriteDirectory + @"\" + fav.Id + @".fav";
                 using (Stream stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     IFormatter formatter = new BinaryFormatter();
@@ -227,15 +227,7 @@ namespace DesktopStreamer
         {
             try
             {
-                foreach (Favorite fav in favorites)
-                {
-                    string path = FavoriteDirectory + @"\" + fav.SrcChannel.Id + @".fav";
-                    using (Stream stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
-                    {
-                        IFormatter formatter = new BinaryFormatter();
-                        formatter.Serialize(stream, fav);
-                    }
-                }
+                foreach (Favorite fav in favorites) SerializeFavorite(fav);
             }
             catch (Exception ex)
             {
@@ -271,12 +263,12 @@ namespace DesktopStreamer
         {
             try
             {
-                string path = FavoriteDirectory + @"\" + fav.SrcChannel.Id + @".fav";
+                string path = FavoriteDirectory + @"\" + fav.Id + @".fav";
                 if (File.Exists(path)) File.Delete(path);
             }
             catch (Exception ex)
             {
-                throw new Exception(string.Format("DeleteFavorite failed. Id: {0}. Error: {1}", fav.SrcChannel.Id, ex.Message));
+                throw new Exception(string.Format("DeleteFavorite failed. Id: {0}. Error: {1}", fav.Id, ex.Message));
             }
         }
         #endregion 

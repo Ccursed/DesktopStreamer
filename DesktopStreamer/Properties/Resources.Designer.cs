@@ -93,6 +93,16 @@ namespace DesktopStreamer.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap statusDownload {
+            get {
+                object obj = ResourceManager.GetObject("statusDownload", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap statusOffline {
             get {
                 object obj = ResourceManager.GetObject("statusOffline", resourceCulture);
