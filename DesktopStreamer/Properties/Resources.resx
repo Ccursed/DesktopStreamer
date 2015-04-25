@@ -145,4 +145,28 @@
   <data name="statusDownload" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\statusdownload.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DesktopStreamerIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\desktopstreamericon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow486" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow486.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow492" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow492.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow483" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow483.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow4832" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow4832.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrowheads3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrowheads3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete30" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete30.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

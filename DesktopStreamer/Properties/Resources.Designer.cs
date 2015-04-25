@@ -22,7 +22,7 @@ namespace DesktopStreamer.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace DesktopStreamer.Properties {
         ///   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DesktopStreamer.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace DesktopStreamer.Properties {
         ///   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,79 @@ namespace DesktopStreamer.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap arrow483 {
+            get {
+                object obj = ResourceManager.GetObject("arrow483", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap arrow4832 {
+            get {
+                object obj = ResourceManager.GetObject("arrow4832", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap arrow486 {
+            get {
+                object obj = ResourceManager.GetObject("arrow486", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap arrow492 {
+            get {
+                object obj = ResourceManager.GetObject("arrow492", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap arrowheads3 {
+            get {
+                object obj = ResourceManager.GetObject("arrowheads3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap delete30 {
+            get {
+                object obj = ResourceManager.GetObject("delete30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
+        /// </summary>
+        public static System.Drawing.Icon DesktopStreamerIcon {
+            get {
+                object obj = ResourceManager.GetObject("DesktopStreamerIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
         /// </summary>
-        internal static byte[] livestreamer {
+        public static byte[] livestreamer {
             get {
                 object obj = ResourceManager.GetObject("livestreamer", resourceCulture);
                 return ((byte[])(obj));
@@ -73,7 +143,7 @@ namespace DesktopStreamer.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logoDummy {
+        public static System.Drawing.Bitmap logoDummy {
             get {
                 object obj = ResourceManager.GetObject("logoDummy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +153,7 @@ namespace DesktopStreamer.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
         /// </summary>
-        internal static byte[] NewtonsoftJson {
+        public static byte[] NewtonsoftJson {
             get {
                 object obj = ResourceManager.GetObject("NewtonsoftJson", resourceCulture);
                 return ((byte[])(obj));
@@ -93,7 +163,17 @@ namespace DesktopStreamer.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap statusDownload {
+        public static System.Drawing.Bitmap plus32 {
+            get {
+                object obj = ResourceManager.GetObject("plus32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap statusDownload {
             get {
                 object obj = ResourceManager.GetObject("statusDownload", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +183,7 @@ namespace DesktopStreamer.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap statusOffline {
+        public static System.Drawing.Bitmap statusOffline {
             get {
                 object obj = ResourceManager.GetObject("statusOffline", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +193,7 @@ namespace DesktopStreamer.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap statusOnline {
+        public static System.Drawing.Bitmap statusOnline {
             get {
                 object obj = ResourceManager.GetObject("statusOnline", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +203,7 @@ namespace DesktopStreamer.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap statusPending {
+        public static System.Drawing.Bitmap statusPending {
             get {
                 object obj = ResourceManager.GetObject("statusPending", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +213,7 @@ namespace DesktopStreamer.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
         /// </summary>
-        internal static byte[] StreamHostApi {
+        public static byte[] StreamHostApi {
             get {
                 object obj = ResourceManager.GetObject("StreamHostApi", resourceCulture);
                 return ((byte[])(obj));
@@ -143,7 +223,7 @@ namespace DesktopStreamer.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap twitch_default {
+        public static System.Drawing.Bitmap twitch_default {
             get {
                 object obj = ResourceManager.GetObject("twitch_default", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

@@ -126,11 +126,11 @@ namespace DesktopStreamer
         {
             switch (state)
             {
-                case Status.PENDING: StatusImage = new BitmapImage(new Uri(@"Resources/statusPending.png", UriKind.Relative)); break;
-                case Status.ONLINE: StatusImage = new BitmapImage(new Uri(@"Resources/statusOnline.png", UriKind.Relative)); break;
-                case Status.OFFLINE: StatusImage = new BitmapImage(new Uri(@"Resources/statusOffline.png", UriKind.Relative)); break;
-                case Status.DOWNLOADING: StatusImage = new BitmapImage(new Uri(@"Resources/statusDownload.png", UriKind.Relative)); break;
-                default: StatusImage = new BitmapImage(new Uri(@"Resources/statusOffline.png", UriKind.Relative)); break;
+                case Status.PENDING: StatusImage = new BitmapImage(new Uri(@"../Resources/statusPending.png", UriKind.Relative)); break;
+                case Status.ONLINE: StatusImage = new BitmapImage(new Uri(@"../Resources/statusOnline.png", UriKind.Relative)); break;
+                case Status.OFFLINE: StatusImage = new BitmapImage(new Uri(@"../Resources/statusOffline.png", UriKind.Relative)); break;
+                case Status.DOWNLOADING: StatusImage = new BitmapImage(new Uri(@"../Resources/statusDownload.png", UriKind.Relative)); break;
+                default: StatusImage = new BitmapImage(new Uri(@"../Resources/statusOffline.png", UriKind.Relative)); break;
             }
         }
         #endregion

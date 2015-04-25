@@ -9,12 +9,12 @@ DesktopStreamer
 none
 false
 DEBUG;TRACE
-D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\App.xaml
-4940406086
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\UIElements\App.xaml
+4-578409828
 
-201558477584
-21578997892
-FavoriteList.xaml;MainElement.xaml;MainWindow.xaml;SettingsWindow.xaml;
+20-1076764620
+17-2025397601
+UIElements\FavoriteList.xaml;UIElements\MainElement.xaml;UIElements\MainWindow.xaml;UIElements\SettingsWindow.xaml;
 
 False
 
