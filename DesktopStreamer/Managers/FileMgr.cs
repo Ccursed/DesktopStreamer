@@ -205,17 +205,6 @@ namespace DesktopStreamer
                 throw new Exception(string.Format("LoadStreamHostApi failed. Error: {0}", ex.Message));
             }
         }
-
-        private void LoadAssemblies()
-        {
-            Assembly asm = Assembly.LoadFrom(HostApiPath);
-            Type type = asm.GetType("StreamHostApi");
-            Object obj = Activator.CreateInstance(type, null);
-
-            asm = Assembly.LoadFrom(NewtonsoftPath);
-            type = asm.GetType("StreamHostApi");
-            obj = Activator.CreateInstance(type, null);
-        }
         #endregion
 
         #region Serialization

@@ -76,12 +76,6 @@ namespace DesktopStreamer
             NotifyProperyChanged("favorites");
         }
 
-        //public void InitFavorites(List<Favorite> favorites)
-        //{
-        //    if(favorites == null) return ;
-        //    foreach (Favorite fav in favorites) AddNewFavorite(fav);
-        //}
-
         public List<Favorite> GetFavoriteList()
         {
             return new List<Favorite>(Favorites);

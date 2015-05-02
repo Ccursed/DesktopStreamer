@@ -13,7 +13,7 @@
         WindowStyle="None" 
         Background="{x:Null}" 
         ResizeMode="CanResizeWithGrip" 
-        Icon="/DesktopStreamer;component/Resources/DesktopStreamerIcon.ico">
+        Icon="/DesktopStreamer;component/Resources/DesktopStreamerIcon.ico" WindowStartupLocation="CenterScreen">
     <Border Name="mainBorder" 
             BorderBrush="Silver" 
             BorderThickness="2" 
@@ -31,21 +31,27 @@
                         Margin="2" 
                         Background="{x:Null}" 
                         BorderThickness="0"
-                        VerticalAlignment="Center"/>
+                        VerticalAlignment="Center"
+                        BorderBrush="{x:Null}"
+                        Padding="0"/>
                 <Button Name="btnMinimize" 
                         Content="Minimize" 
                         DockPanel.Dock="Right" 
                         Margin="2" 
                         Background="{x:Null}" 
                         BorderThickness="0"
-                        VerticalAlignment="Center"/>
+                        VerticalAlignment="Center"
+                        BorderBrush="{x:Null}"
+                        Padding="0"/>
                 <Button Name="btnTray" 
                         Content="Tray" 
                         DockPanel.Dock="Right" 
                         Margin="2" 
                         Background="{x:Null}" 
                         BorderThickness="0"
-                        VerticalAlignment="Center"/>
+                        VerticalAlignment="Center"
+                        BorderBrush="{x:Null}"
+                        Padding="0"/>
                 <TextBlock Foreground="Goldenrod" 
                            Text="DesktopStreamer  " 
                            FontSize="14"
@@ -88,8 +94,10 @@
                         FontWeight="Bold" 
                         Margin="6"
                         Background="{x:Null}"
-                        BorderThickness="0">
-                    <Image Name="imgExpand" Source="../Resources/arrow4832.png"/>
+                        BorderThickness="0"
+                        BorderBrush="{x:Null}">
+                    <Image Name="imgExpand" 
+                           Source="../Resources/arrow4832.png"/>
                 </Button>
                 <local:FavoriteList x:Name="favList" 
                                     Grid.Row="1" 

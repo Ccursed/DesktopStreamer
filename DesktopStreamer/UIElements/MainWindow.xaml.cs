@@ -255,21 +255,13 @@ namespace DesktopStreamer
         {
             try
             {
-                //if (fileMgr.Validation == FileMgr.ValidationStatus.Unvalidated) fileMgr.ValidateFileStructure();
-
-                if (args.Name.ToLower().StartsWith("streamhostapi"))
-                    return fileMgr.LoadStreamHostApi();
-                else return fileMgr.LoadNewtonsoft();
-            }
-            catch (NullReferenceException)
-            {
-                MessageBox.Show("Not funny man!");
-                throw;
+                if (args.Name.ToLower().StartsWith("streamhostapi")) return fileMgr.LoadStreamHostApi();
+                else if (args.Name.ToLower().StartsWith("newtonsoft.json")) return fileMgr.LoadNewtonsoft();
+                else return null;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Well, I couldnt build the necessary file structure. Good Luck in the future ! :) " + ex.Message);
-                //Close();
                 throw;
             }
         }
