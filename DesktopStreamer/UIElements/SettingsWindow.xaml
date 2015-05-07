@@ -31,6 +31,7 @@
         <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" LastChildFill="False">
             <Button Name="btnSave"   DockPanel.Dock="Left"  Content="Cancel" Margin="4" BorderBrush="Silver" BorderThickness="2" FontSize="14" VerticalAlignment="Center" Click="btnSave_Click"/>
             <Button Name="btnCancel" DockPanel.Dock="Right" Content="Save"   Margin="4" BorderBrush="Silver" BorderThickness="2" FontSize="14" VerticalAlignment="Center"/>
+            <Button Name="btnLogFolder" DockPanel.Dock="Right" Content="Logs" Margin="4" BorderBrush="Silver" BorderThickness="2" FontSize="14" VerticalAlignment="Center" Click="btnLogFolder_Click"/>
         </DockPanel>
         <DockPanel Grid.Column="1" HorizontalAlignment="Stretch" Margin="4" VerticalAlignment="Stretch" LastChildFill="False">
             <CheckBox DockPanel.Dock="Top" Name="cbStartOnDrag" Content="Start streams upon drag in source box" Grid.Column="1" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top"/>

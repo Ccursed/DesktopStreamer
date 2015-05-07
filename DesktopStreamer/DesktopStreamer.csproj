@@ -90,6 +90,7 @@
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MediaPlayer.cs" />
+    <Compile Include="Managers\UtilsMgr.cs" />
     <None Include="Resources\livestreamer.zip" />
     <Page Include="UIElements\FavoriteList.xaml">
       <SubType>Designer</SubType>

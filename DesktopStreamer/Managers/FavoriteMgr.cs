@@ -99,6 +99,7 @@ namespace DesktopStreamer
             }
             catch (Exception ex)
             {
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("FavoriteMgr.Favorite failed on [{0}]. Error: {1}", url, ex.Message));
                 throw new Exception(string.Format("FavoriteMgr.Favorite failed on [{0}]. Error: {1}", url, ex.Message));
             }
         }
@@ -147,6 +148,7 @@ namespace DesktopStreamer
             }
             catch (Exception ex)
             {
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("GetLogo failed with Url: {0} . Error: {1}", channel.Id, ex.Message));
                 throw new Exception(string.Format("GetLogo failed with Url: {0} . Error: {1}", channel.Id, ex.Message));
             }
         }
@@ -159,6 +161,7 @@ namespace DesktopStreamer
             }
             catch (Exception ex)
             {
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("GetLogoPath failed. Error: {0}", ex.Message));
                 throw new Exception(string.Format("GetLogoPath failed. Error: {0}", ex.Message));
             }
         }

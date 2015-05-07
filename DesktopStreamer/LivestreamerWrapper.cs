@@ -85,7 +85,11 @@ namespace DesktopStreamer
 
         public static LivestreamerWrapper CreateInstance(string name)
         {
-            if (string.IsNullOrEmpty(livestreamerExecutable)) throw new Exception("LiveStreamWrapper.CreateInstance. Tried to create a lsInstance without initializing the wrapper!");
+            if (string.IsNullOrEmpty(livestreamerExecutable))
+            {
+                UtilsMgr.Log(Logger.LogLevel.Warning, "LiveStreamWrapper.CreateInstance. Tried to create a lsInstance without initializing the wrapper!");
+                throw new Exception("LiveStreamWrapper.CreateInstance. Tried to create a lsInstance without initializing the wrapper!");
+            }
             return new LivestreamerWrapper(instanceCount++, string.IsNullOrEmpty(name) ? instanceCount.ToString() : name);
         }
 
@@ -175,7 +179,6 @@ namespace DesktopStreamer
         private void CatchProcessOutput(object sender, DataReceivedEventArgs args)
         {
             if (args.Data == null) return;
-            log.Add(args.Data);
             if (args.Data.StartsWith(@"error:")) State = Status.Error;
             else if (args.Data.StartsWith(@"[cli][info] Found matching plugin")) State = Status.Starting;
             else if (args.Data.StartsWith(@"[cli][info] Starting player")) State = Status.Working;

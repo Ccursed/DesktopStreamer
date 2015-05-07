@@ -21,9 +21,6 @@ using System.Configuration;
 
 namespace DesktopStreamer
 {
-    /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         #region Properties
@@ -59,14 +56,16 @@ namespace DesktopStreamer
             LoadSerializedFavorites();
             settingsMgr.ScanForPlayers();
             FinishStartUp();
+            string s = UtilsMgr.CheckVersion();
+            Console.WriteLine(s);
         }
 
         private void Inits()
         {
             fileMgr = new FileMgr();
-            favMgr = new FavoriteMgr(favList, fileMgr.FavoriteDirectory, fileMgr.FavoriteLogoDirectory, Dispatcher);
+            favMgr = new FavoriteMgr(favList, FileMgr.FavoriteDirectory, FileMgr.FavoriteLogoDirectory, Dispatcher);
             settingsMgr = new SettingsManager();
-            LivestreamerWrapper.Init(fileMgr.LivestreamerDirectory);
+            LivestreamerWrapper.Init(FileMgr.LivestreamerDirectory);
             lsInstances = new List<LivestreamerWrapper>();
         }
 
@@ -106,7 +105,8 @@ namespace DesktopStreamer
             }
             catch (Exception ex)
             {
-                throw new Exception(string.Format(ex.Message));
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("AddFavorite failed. Link: {0} . Error {1}", link, ex.Message));
+                throw new Exception(string.Format("AddFavorite failed. Link: {0} . Error {1}", link, ex.Message));
             }
         }
 
@@ -190,6 +190,7 @@ namespace DesktopStreamer
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             foreach (LivestreamerWrapper instance in lsInstances) instance.Close();
+            UtilsMgr.Logger.CleanUp();
         } 
         #endregion
 
@@ -248,7 +249,6 @@ namespace DesktopStreamer
             lsWrapper.SetArguments(LivestreamerWrapper.CreateStartParameter(link, LivestreamerWrapper.Quality.Best, fileMgr.PlayerPath, null));
             lsWrapper.instanceChangedState += onInstanceChangedState;
             lsWrapper.Start();
-            lsWrapper.log.onAdd += log_onAdd;
         }
 
         private Assembly LoadLocalAssemblys(object sender, ResolveEventArgs args)
@@ -261,6 +261,7 @@ namespace DesktopStreamer
             }
             catch (Exception ex)
             {
+                UtilsMgr.Log(Logger.LogLevel.Error, "Couldnt load locals Assemblies");
                 MessageBox.Show("Well, I couldnt build the necessary file structure. Good Luck in the future ! :) " + ex.Message);
                 throw;
             }

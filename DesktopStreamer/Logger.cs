@@ -1,25 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DesktopStreamer
 {
-    public delegate void OnAddHandler(string line);
-
-    public class Logger : List<string>
+    public class Logger
     {
-        public event OnAddHandler onAdd;
-
-        public Logger() : base()
+        public enum LogLevel
         {
+            Info, Warning, Error
+        };
+
+        private readonly string curLogPath;
+
+        public Logger()
+        {
+            curLogPath = FileMgr.LogDirectory + @"\" + DateTime.UtcNow.Ticks + @".log";
+            File.Create(curLogPath);
         }
 
-        public new void Add(string toAdd)
+        public bool Write(LogLevel level, string msg)
         {
-            base.Add(toAdd);
-            if(onAdd != null) onAdd(toAdd);
+            try
+            {
+                File.AppendText(string.Format("[{0,7}] {1}", level.ToString(), msg));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public void CleanUp()
+        {
+            if (string.IsNullOrEmpty(File.ReadAllText(curLogPath))) File.Delete(curLogPath);
         }
     }
 }

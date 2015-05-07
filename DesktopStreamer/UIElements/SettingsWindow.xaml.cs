@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace DesktopStreamer
 {
@@ -56,6 +57,11 @@ namespace DesktopStreamer
         private void slBuffer_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             tbBuffer.Text = slBuffer.Value.ToString();
+        }
+
+        private void btnLogFolder_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(FileMgr.LogDirectory);
         }
     }
 }

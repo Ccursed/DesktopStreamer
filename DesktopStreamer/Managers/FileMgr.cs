@@ -38,26 +38,38 @@ namespace DesktopStreamer
             set { playerPath = value; }
         }
 
-        private readonly string baseDirectory;
-        private readonly string dllDirectory;
+        private static string baseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DesktopStreamer";
+        public static string BaseDirectory
+        {
+            get { return FileMgr.baseDirectory; }
+        }
 
-        private readonly string livestreamerDirectory;
-        public string LivestreamerDirectory
+        private static string dllDirectory = dllDirectory = baseDirectory + @"\DLL";
+
+        private static string livestreamerDirectory = livestreamerDirectory = baseDirectory + @"\Livestreamer";
+        public static string LivestreamerDirectory
         {
             get { return livestreamerDirectory; }
-        }  
+        }
 
-        private readonly string favoriteDirectory;
-        public string FavoriteDirectory
+        private static string favoriteDirectory = favoriteDirectory = baseDirectory + @"\Favorites";
+        public static string FavoriteDirectory
         {
             get { return favoriteDirectory; }
         }
 
-        private readonly string favoriteLogoDirectory;
-        public string FavoriteLogoDirectory
+        private static string favoriteLogoDirectory = favoriteLogoDirectory = FavoriteDirectory + @"\Logos";
+        public static string FavoriteLogoDirectory
         {
             get { return favoriteLogoDirectory; }
         }
+
+        private static readonly string logDirectory = FileMgr.BaseDirectory + @"\Logs";
+        public static string LogDirectory
+        {
+            get { return FileMgr.logDirectory; }
+        } 
+
 
         private FilestructureStatus structureStatus = FilestructureStatus.Unchecked;
         public FilestructureStatus StructureStatus
@@ -89,15 +101,9 @@ namespace DesktopStreamer
 
         public FileMgr()
         {
-            baseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DesktopStreamer";
-            dllDirectory = baseDirectory + @"\DLL";
-            livestreamerDirectory = baseDirectory + @"\Livestreamer";
-            favoriteDirectory = baseDirectory + @"\Favorites";
-            favoriteLogoDirectory = FavoriteDirectory + @"\Logos";
             hostApiPath = dllDirectory + @"\StreamHostApi.dll";
             newtonsoftPath = dllDirectory + @"\NewtonsoftJson.dll";
             PlayerPath = SearchVlc();
-            
         }
 
         #region Filestructure and Extraction
@@ -107,7 +113,7 @@ namespace DesktopStreamer
             try
             {
                 //Base Directory
-                if (!Directory.Exists(baseDirectory)) Directory.CreateDirectory(baseDirectory);
+                if (!Directory.Exists(BaseDirectory)) Directory.CreateDirectory(BaseDirectory);
 
                 //DLL Directory
                 if (!Directory.Exists(dllDirectory)) Directory.CreateDirectory(dllDirectory);
@@ -119,10 +125,13 @@ namespace DesktopStreamer
                 if (!File.Exists(LivestreamerDirectory + @"\livestreamer.exe"))
                 {
                     foreach (String file in Directory.GetFiles(LivestreamerDirectory)) File.Delete(file);
-                    ExtractResource("livestreamer.zip", baseDirectory, Properties.Resources.livestreamer);
-                    ZipFile.ExtractToDirectory(baseDirectory + @"\" + "livestreamer.zip", baseDirectory);
-                    File.Delete(baseDirectory + @"\" + "livestreamer.zip");
+                    ExtractResource("livestreamer.zip", BaseDirectory, Properties.Resources.livestreamer);
+                    ZipFile.ExtractToDirectory(BaseDirectory + @"\" + "livestreamer.zip", BaseDirectory);
+                    File.Delete(BaseDirectory + @"\" + "livestreamer.zip");
                 }
+
+                //Log Directory
+                if (!Directory.Exists(LogDirectory)) Directory.CreateDirectory(LogDirectory);
 
                 //Favorite structure
                 if (!Directory.Exists(favoriteDirectory)) Directory.CreateDirectory(favoriteDirectory);
@@ -132,6 +141,7 @@ namespace DesktopStreamer
             }
             catch (Exception ex)
             {
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("FileMgr.ValidateFileStructure failed. Error: {0}", ex.Message));
                 throw new Exception(string.Format("FileMgr.ValidateFileStructure failed. Error: {0}", ex.Message));
             }
         }
@@ -144,6 +154,7 @@ namespace DesktopStreamer
             }
             catch (Exception ex)
             {
+                UtilsMgr.Log(Logger.LogLevel.Error, String.Format("FileMgr.ExtractResource failed on ({0}), ({1}). Error: {2}", name, path, ex.Message));
                 throw new Exception(String.Format("FileMgr.ExtractResource failed on ({0}), ({1}). Error: {2}", name, path, ex.Message));
             }
         }
@@ -161,10 +172,11 @@ namespace DesktopStreamer
                 if (Directory.Exists(livestreamerDirectory)) Directory.Delete(livestreamerDirectory, true);
                 if (cleanFav) if (Directory.Exists(FavoriteLogoDirectory)) Directory.Delete(FavoriteLogoDirectory, true);
                 if (cleanFav) if (Directory.Exists(favoriteDirectory)) Directory.Delete(favoriteDirectory, true);
-                if (cleanFav) if (Directory.Exists(baseDirectory)) Directory.Delete(baseDirectory, true);
+                if (cleanFav) if (Directory.Exists(BaseDirectory)) Directory.Delete(BaseDirectory, true);
             }
             catch (Exception ex)
             {
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("FileMgr.Extract failed. Error: {0}", ex.Message));
                 throw new Exception(string.Format("FileMgr.Extract failed. Error: {0}", ex.Message));
             }
         }
@@ -188,6 +200,7 @@ namespace DesktopStreamer
             }
             catch (Exception ex)
             {
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("LoadNewtonsoft failed. Error: {0}", ex.Message));
                 throw new Exception(string.Format("LoadNewtonsoft failed. Error: {0}", ex.Message));
             }
         }
@@ -202,6 +215,7 @@ namespace DesktopStreamer
             }
             catch (Exception ex)
             {
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("LoadStreamHostApi failed. Error: {0}", ex.Message));
                 throw new Exception(string.Format("LoadStreamHostApi failed. Error: {0}", ex.Message));
             }
         }
@@ -222,6 +236,7 @@ namespace DesktopStreamer
             }
             catch (Exception ex)
             {
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("SerializeFavorite failed. Error: {0}", ex.Message));
                 throw new Exception(string.Format("SerializeFavorite failed. Error: {0}", ex.Message));
             }
         }
@@ -256,6 +271,7 @@ namespace DesktopStreamer
             }
             catch (Exception ex)
             {
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("DeserializeFavorites failed. Error: {0}", ex.Message));
                 throw new Exception(string.Format("DeserializeFavorites failed. Error: {0}", ex.Message));
             }
 
@@ -271,6 +287,7 @@ namespace DesktopStreamer
             }
             catch (Exception ex)
             {
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("DeleteFavorite failed. Id: {0}. Error: {1}", fav.Id, ex.Message));
                 throw new Exception(string.Format("DeleteFavorite failed. Id: {0}. Error: {1}", fav.Id, ex.Message));
             }
         }
