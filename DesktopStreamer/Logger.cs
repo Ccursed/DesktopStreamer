@@ -18,13 +18,13 @@ namespace DesktopStreamer
         public Logger()
         {
             curLogPath = FileMgr.LogDirectory + @"\" + DateTime.UtcNow.Ticks + @".log";
-            File.Create(curLogPath);
         }
 
         public bool Write(LogLevel level, string msg)
         {
             try
             {
+                if (!File.Exists(curLogPath)) File.Create(curLogPath);
                 File.AppendText(string.Format("[{0,7}] {1}", level.ToString(), msg));
                 return true;
             }
@@ -32,11 +32,6 @@ namespace DesktopStreamer
             {
                 return false;
             }
-        }
-
-        public void CleanUp()
-        {
-            if (string.IsNullOrEmpty(File.ReadAllText(curLogPath))) File.Delete(curLogPath);
         }
     }
 }

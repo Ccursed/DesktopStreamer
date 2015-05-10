@@ -68,3 +68,11 @@ D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Debug\DesktopStreamer.e
 D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Debug\DesktopStreamer.pdb
 D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\bin\Debug\DesktopStreamer.pdb
 D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Debug\DesktopStreamer.csprojResolveAssemblyReference.cache
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Debug\UIElements\CcursedMessageBox.baml
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Debug\UIElements\CcursedMessageBox.g.cs
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Debug\UIElements\AboutWindow.baml
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Debug\UIElements\AboutWindow.g.cs
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\bin\Debug\StreamHostApi.dll
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\bin\Debug\Newtonsoft.Json.dll
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\bin\Debug\StreamHostApi.pdb
+D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\bin\Debug\Newtonsoft.Json.xml

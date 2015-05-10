@@ -59,7 +59,7 @@
     <Reference Include="StreamHostApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Visual Studio\TwitchApi\StreamHostApi\bin\Release\StreamHostApi.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -86,12 +86,26 @@
     </ApplicationDefinition>
     <Compile Include="Settings.cs" />
     <Compile Include="Managers\SettingsManager.cs" />
+    <Compile Include="UIElements\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIElements\CcursedMessageBox.xaml.cs">
+      <DependentUpon>CcursedMessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIElements\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MediaPlayer.cs" />
     <Compile Include="Managers\UtilsMgr.cs" />
     <None Include="Resources\livestreamer.zip" />
+    <Page Include="UIElements\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIElements\CcursedMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UIElements\FavoriteList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -218,6 +232,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\arrow483.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\repair17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\questions3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

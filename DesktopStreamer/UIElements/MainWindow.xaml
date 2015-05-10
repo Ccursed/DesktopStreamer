@@ -5,7 +5,7 @@
         xmlns:appSettings="clr-namespace:DesktopStreamer.Properties"
         Title="MainWindow" 
         MinWidth="350" 
-        MinHeight="200" 
+        MinHeight="240" 
         Height="300" 
         Width="500" 
         SizeChanged="MainWindow_SizeChanged" 
@@ -33,7 +33,8 @@
                         BorderThickness="0"
                         VerticalAlignment="Center"
                         BorderBrush="{x:Null}"
-                        Padding="0"/>
+                        Padding="0"
+                        Click="btnExit_Click"/>
                 <Button Name="btnMinimize" 
                         Content="Minimize" 
                         DockPanel.Dock="Right" 
@@ -113,16 +114,30 @@
                            Grid.Row="1" 
                            Margin="6,4,0,4" 
                            LastChildFill="False">
-                    <Button Name="btnExit" 
+                    <!--<Button Name="btnExit" 
                             Content="Exit" 
                             DockPanel.Dock="Bottom"
-                            Margin="2" 
-                            Click="btnExit_Click"/>
+                            Margin="2"
+                            MaxHeight="25"
+                            Click="btnExit_Click"/>-->
                     <Button Name="btnSettings" 
-                            Content="Settings" 
                             DockPanel.Dock="Bottom" 
-                            Margin="2" 
-                            Click="btnSettings_Click"/>
+                            Margin="2, 5, 2, 5" 
+                            MaxHeight="35"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="btnSettings_Click">
+                        <Image x:Name="imgSettings" Source="../Resources/repair17.png"/>
+                    </Button>
+                    <Button Name="btnAbout"
+                            DockPanel.Dock="Bottom"
+                            Margin="2, 5, 2, 5"
+                            MaxHeight="35"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="btnAbout_Click">
+                        <Image x:Name="imgAbout" Source="../Resources/questions3.png"/>
+                    </Button>
                 </DockPanel>
             </Grid>
         </DockPanel>

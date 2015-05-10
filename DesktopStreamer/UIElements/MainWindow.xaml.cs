@@ -18,6 +18,7 @@ using System.ComponentModel;
 using System.Timers;
 using System.Collections.ObjectModel;
 using System.Configuration;
+using DesktopStreamer.UIElements;
 
 namespace DesktopStreamer
 {
@@ -56,8 +57,6 @@ namespace DesktopStreamer
             LoadSerializedFavorites();
             settingsMgr.ScanForPlayers();
             FinishStartUp();
-            string s = UtilsMgr.CheckVersion();
-            Console.WriteLine(s);
         }
 
         private void Inits()
@@ -83,11 +82,22 @@ namespace DesktopStreamer
         private void FinishStartUp()
         {
             favMgr.UpdateTimer.Start();
+            UtilsMgr.CheckVersion();
         }
 
         private void LoadSerializedFavorites()
         {
-            foreach (Favorite fav in fileMgr.DeserializeFavorites()) favMgr.AddFavorite(fav.Url);
+            foreach (Favorite fav in fileMgr.DeserializeFavorites())
+            {
+                try
+                {
+                    favMgr.AddFavorite(fav.Url);
+                }
+                catch (Exception)
+                {
+                    UtilsMgr.Log(Logger.LogLevel.Warning, string.Format("Failed to load stream: {0}", fav.Url));
+                }
+            }
         }
         #endregion
 
@@ -143,6 +153,12 @@ namespace DesktopStreamer
             wndSettings.Show();
         }
 
+        private void btnAbout_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWindow about = new AboutWindow();
+            about.Show();
+        }
+
         private void btnExpand_Click(object sender, RoutedEventArgs e)
         {
             if (expanded)
@@ -190,7 +206,6 @@ namespace DesktopStreamer
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             foreach (LivestreamerWrapper instance in lsInstances) instance.Close();
-            UtilsMgr.Logger.CleanUp();
         } 
         #endregion
 

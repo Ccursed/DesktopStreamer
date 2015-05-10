@@ -10,6 +10,7 @@ using System.IO.Compression;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Microsoft.Win32;
+using System.Xml.Serialization;
 
 namespace DesktopStreamer
 {
@@ -18,6 +19,13 @@ namespace DesktopStreamer
     class FileMgr
     {
         #region Properties
+
+        private readonly string settingsPath;
+        public string SettingsPath
+        {
+            get { return settingsPath; }
+        } 
+
 
         private readonly string newtonsoftPath;
         public string NewtonsoftPath
@@ -38,13 +46,17 @@ namespace DesktopStreamer
             set { playerPath = value; }
         }
 
-        private static string baseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DesktopStreamer";
+        private static readonly string baseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DesktopStreamer";
         public static string BaseDirectory
         {
             get { return FileMgr.baseDirectory; }
         }
 
-        private static string dllDirectory = dllDirectory = baseDirectory + @"\DLL";
+        private static readonly string dllDirectory = baseDirectory + @"\DLL";
+        public static string DllDirectory
+        {
+            get { return FileMgr.dllDirectory; }
+        }
 
         private static string livestreamerDirectory = livestreamerDirectory = baseDirectory + @"\Livestreamer";
         public static string LivestreamerDirectory
@@ -101,8 +113,9 @@ namespace DesktopStreamer
 
         public FileMgr()
         {
-            hostApiPath = dllDirectory + @"\StreamHostApi.dll";
-            newtonsoftPath = dllDirectory + @"\NewtonsoftJson.dll";
+            hostApiPath = DllDirectory + @"\StreamHostApi.dll";
+            newtonsoftPath = DllDirectory + @"\NewtonsoftJson.dll";
+            settingsPath = BaseDirectory + @"\Settings.xml";
             PlayerPath = SearchVlc();
         }
 
@@ -116,9 +129,9 @@ namespace DesktopStreamer
                 if (!Directory.Exists(BaseDirectory)) Directory.CreateDirectory(BaseDirectory);
 
                 //DLL Directory
-                if (!Directory.Exists(dllDirectory)) Directory.CreateDirectory(dllDirectory);
-                if (!File.Exists(hostApiPath)) ExtractResource("StreamHostApi.dll", dllDirectory, Properties.Resources.StreamHostApi);
-                if (!File.Exists(newtonsoftPath)) ExtractResource("NewtonsoftJson.dll", dllDirectory, Properties.Resources.NewtonsoftJson);
+                if (!Directory.Exists(DllDirectory)) Directory.CreateDirectory(DllDirectory);
+                if (!File.Exists(hostApiPath)) ExtractResource("StreamHostApi.dll", DllDirectory, Properties.Resources.StreamHostApi);
+                if (!File.Exists(newtonsoftPath)) ExtractResource("NewtonsoftJson.dll", DllDirectory, Properties.Resources.NewtonsoftJson);
                 
                 //Livestreamer Directory and files
                 if (!Directory.Exists(livestreamerDirectory)) Directory.CreateDirectory(livestreamerDirectory);
@@ -132,6 +145,9 @@ namespace DesktopStreamer
 
                 //Log Directory
                 if (!Directory.Exists(LogDirectory)) Directory.CreateDirectory(LogDirectory);
+
+                //Settings file
+                if (!File.Exists(SettingsPath)) ExtractResource("Settings.xml", BaseDirectory, new byte[10]);
 
                 //Favorite structure
                 if (!Directory.Exists(favoriteDirectory)) Directory.CreateDirectory(favoriteDirectory);
@@ -168,7 +184,7 @@ namespace DesktopStreamer
         {
             try
             {
-                if (Directory.Exists(dllDirectory)) Directory.Delete(dllDirectory, true);
+                if (Directory.Exists(DllDirectory)) Directory.Delete(DllDirectory, true);
                 if (Directory.Exists(livestreamerDirectory)) Directory.Delete(livestreamerDirectory, true);
                 if (cleanFav) if (Directory.Exists(FavoriteLogoDirectory)) Directory.Delete(FavoriteLogoDirectory, true);
                 if (cleanFav) if (Directory.Exists(favoriteDirectory)) Directory.Delete(favoriteDirectory, true);
@@ -222,6 +238,43 @@ namespace DesktopStreamer
         #endregion
 
         #region Serialization
+
+        public Settings DeserializeSettings()
+        {
+            try
+            {
+                using(FileStream stream = new FileStream(SettingsPath, FileMode.Open, FileAccess.Read))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+                    Settings settings = (Settings)serializer.Deserialize(stream);
+                    return settings;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("DeserializeSettings failed. Error: {0}", ex.Message));
+                throw new Exception(string.Format("DeserializeSettings failed. Error: {0}", ex.Message));
+            }
+        }
+
+        public void SerializeSettings(Settings settings)
+        {
+            try
+            {
+                using(FileStream stream = new FileStream(SettingsPath, FileMode.Create, FileAccess.Write))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+                    serializer.Serialize(stream, settings);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                UtilsMgr.Log(Logger.LogLevel.Error, string.Format("SerializeSettings failed. Error: {0}", ex.Message));
+                throw new Exception(string.Format("SerializeSettings failed. Error: {0}", ex.Message));
+            }
+        }
 
         public void SerializeFavorite(Favorite fav)
         {

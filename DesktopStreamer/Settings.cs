@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace DesktopStreamer
 {
-    [Serializable]
+    [XmlRootAttribute("Settings", Namespace="ccursed.net")]
     public class Settings
     {
         private bool startOnDragIn;

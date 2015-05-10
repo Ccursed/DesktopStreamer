@@ -4,18 +4,43 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="60" d:DesignWidth="500">
+             d:DesignHeight="60" 
+             d:DesignWidth="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="70"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" Text="Link" TextAlignment="Center" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Name="txtLink" Grid.Column="1" TextWrapping="NoWrap" VerticalAlignment="Center" FontSize="14" BorderThickness="1" Padding="4" Margin="4" PreviewDrop="txtLink_PreviewDrop" KeyUp="txtLink_KeyUp"/>
-        <Button Name="btnWatch" IsEnabled="True" Grid.Column="2" Margin="4" Click="btnWatchClick" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="14" Background="{x:Null}" BorderThickness="0">
+        <TextBlock Grid.Column="0" 
+                   Text="Link" 
+                   TextAlignment="Center"
+                   FontSize="16" 
+                   FontWeight="Bold" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center"/>
+        <TextBox Name="txtLink" 
+                 Grid.Column="1" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Center"
+                 MinHeight="28"
+                 FontSize="14" 
+                 VerticalContentAlignment="Center"
+                 BorderThickness="1"
+                 Margin="4, 0, 4, 0" 
+                 PreviewDrop="txtLink_PreviewDrop"
+                 KeyUp="txtLink_KeyUp"/>
+        <Button Name="btnWatch" 
+                IsEnabled="True" 
+                Grid.Column="2" 
+                Margin="4" 
+                Click="btnWatchClick"
+                VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch" 
+                FontSize="14" 
+                Background="{x:Null}" 
+                BorderThickness="0">
             <Image Source="../Resources/arrowheads3.png"/>
         </Button>
     </Grid>
 </UserControl>
- 

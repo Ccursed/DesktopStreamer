@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Debug\
+d:\Programmieren\Git\DesktopStreamer\DesktopStreamer\obj\Debug\
 DesktopStreamer
 none
 false
 DEBUG;TRACE
-D:\Programmieren\Git\DesktopStreamer\DesktopStreamer\UIElements\App.xaml
-4-578409828
+d:\Programmieren\Git\DesktopStreamer\DesktopStreamer\UIElements\App.xaml
+6937731380
 
-21-964325713
-17-2025397601
-UIElements\FavoriteList.xaml;UIElements\MainElement.xaml;UIElements\MainWindow.xaml;UIElements\SettingsWindow.xaml;
+23-1837444800
+17794454503
+UIElements\AboutWindow.xaml;UIElements\CcursedMessageBox.xaml;UIElements\FavoriteList.xaml;UIElements\MainElement.xaml;UIElements\MainWindow.xaml;UIElements\SettingsWindow.xaml;
 
-False
+True
 

@@ -16,9 +16,6 @@ using System.Diagnostics;
 
 namespace DesktopStreamer
 {
-    /// <summary>
-    /// Interaktionslogik für Window1.xaml
-    /// </summary>
     public partial class SettingsWindow : Window
     {
         public ObservableCollection<MediaPlayer> obscMediaPlayers;

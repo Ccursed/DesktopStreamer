@@ -4,53 +4,110 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="400" MinHeight="150" MinWidth="200">
+             d:DesignHeight="250" 
+             d:DesignWidth="400"
+             MinHeight="150"
+             MinWidth="200">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="70"/>
         </Grid.ColumnDefinitions>
-        <Border BorderBrush="Silver" BorderThickness="1,1,1,1" CornerRadius="3">
-            <ListBox Name="favList" Grid.Column="0" Grid.RowSpan="6" HorizontalContentAlignment="Stretch" PreviewDrop="favList_PreviewDrop" AllowDrop="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False" SelectionChanged="favList_SelectionChanged">
+        <Border BorderBrush="Silver" 
+                BorderThickness="1"
+                CornerRadius="3">
+            <ListBox Name="favList"
+                     Grid.Column="0"
+                     Grid.RowSpan="6"
+                     HorizontalContentAlignment="Stretch" 
+                     PreviewDrop="favList_PreviewDrop" 
+                     AllowDrop="True" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ScrollViewer.CanContentScroll="False"
+                     SelectionChanged="favList_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Silver" BorderThickness="0, 0, 0, 1">
-                            <DockPanel MaxHeight="50" Margin="4">
+                        <Border BorderBrush="Silver" 
+                                BorderThickness="0, 0, 0, 1">
+                            <DockPanel MaxHeight="50"
+                                       Margin="4">
                                 <DockPanel.ToolTip>
-                                    <ToolTip Content="{Binding Path=Description}" Placement="Center"/>
+                                    <ToolTip Content="{Binding Path=Description}" 
+                                             Placement="Center"/>
                                 </DockPanel.ToolTip>
-                                <Viewbox DockPanel.Dock="Left" Width="40" Margin="0,0,6,0">
+                                <Viewbox DockPanel.Dock="Left" 
+                                         Width="40"
+                                         Margin="0,0,6,0">
                                     <Image Source="{Binding Path=Logo}"/>
                                 </Viewbox>
-                                <Viewbox Margin="6,0,0,0" DockPanel.Dock="Right" VerticalAlignment="Stretch">
-                                    <Image Source="{Binding Path=StatusImage}" VerticalAlignment="Stretch"/>
-                                </Viewbox>
-                                <TextBlock DockPanel.Dock="Top" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Title}"/>
-                                <TextBlock DockPanel.Dock="Bottom" TextWrapping="NoWrap" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Description}" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type DockPanel}}}"/>
+                                <Border Margin="6,0,0,0"
+                                        DockPanel.Dock="Right"
+                                        VerticalAlignment="Stretch" 
+                                        BorderBrush="Silver"
+                                        BorderThickness="2"
+                                        CornerRadius="2">
+                                    <Viewbox>
+                                        <Image Source="{Binding Path=StatusImage}"
+                                               VerticalAlignment="Stretch"/>
+                                    </Viewbox>
+                                </Border>
+                                <TextBlock DockPanel.Dock="Top" 
+                                           FontSize="14"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center" 
+                                           Text="{Binding Path=Title}"/>
+                                <TextBlock DockPanel.Dock="Bottom" 
+                                           TextWrapping="NoWrap" 
+                                           FontSize="10" 
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center" 
+                                           Text="{Binding Path=Description}" 
+                                           MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type DockPanel}}}"/>
                             </DockPanel>
                         </Border>
-                        
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </Border>
-        <Grid  Grid.Column="1" Margin="0">
+        <Grid  Grid.Column="1"
+               Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Button Name="btnAdd" Grid.Row="0" Margin="3" Click="btnAddClick" Background="{x:Null}" BorderThickness="0">
+            <Button Name="btnAdd" 
+                    Grid.Row="0" 
+                    Margin="3" 
+                    Click="btnAddClick" 
+                    Background="{x:Null}" 
+                    BorderThickness="0">
                 <Image Source="../Resources/plus32.png" />
             </Button>
-            <Button  Name="btnUp" Grid.Row="1" Margin="3" Click="btnUpClick" Background="{x:Null}" BorderThickness="0">
+            <Button  Name="btnUp" 
+                     Grid.Row="1"
+                     Margin="3"
+                     Click="btnUpClick"
+                     Background="{x:Null}" 
+                     BorderThickness="0">
                 <Image Source="../Resources/arrow492.png" />
             </Button>
-            <Button Name="btnDown" Grid.Row="2" Margin="3" Click="btnDownClick" Background="{x:Null}" BorderThickness="0">
+            <Button Name="btnDown"
+                    Grid.Row="2"
+                    Margin="3"
+                    Click="btnDownClick" 
+                    Background="{x:Null}"
+                    BorderThickness="0">
                 <Image Source="../Resources/arrow486.png" />
             </Button>
-            <Button Name="btnRemove" Grid.Row="3" Margin="3" Click="btnRemoveClick" Background="{x:Null}" BorderThickness="0">
+            <Button Name="btnRemove"
+                    Grid.Row="3" 
+                    Margin="3" 
+                    Click="btnRemoveClick" 
+                    Background="{x:Null}"
+                    BorderThickness="0">
                 <Image Source="../Resources/delete30.png" />
             </Button>
         </Grid>

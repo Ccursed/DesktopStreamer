@@ -173,6 +173,26 @@ namespace DesktopStreamer.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap questions3 {
+            get {
+                object obj = ResourceManager.GetObject("questions3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap repair17 {
+            get {
+                object obj = ResourceManager.GetObject("repair17", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap statusDownload {
             get {
                 object obj = ResourceManager.GetObject("statusDownload", resourceCulture);
@@ -227,6 +247,15 @@ namespace DesktopStreamer.Properties {
             get {
                 object obj = ResourceManager.GetObject("twitch_default", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 0.5.0 ähnelt.
+        /// </summary>
+        public static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
     }
